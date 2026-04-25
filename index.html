@@ -1089,6 +1089,311 @@
     }
 
     /* =====================================================
+       ACCESSIBILITY — SKIP LINK
+       ===================================================== */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      font-weight: 600;
+      z-index: 200;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 0;
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* =====================================================
+       ACCESSIBILITY WIDGET — BUTTON & PANEL
+       ===================================================== */
+    .a11y-toggle {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: var(--text);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(26, 43, 60, 0.35);
+      z-index: 95;
+      transition: var(--transition);
+    }
+    .a11y-toggle:hover {
+      background: var(--primary-dark);
+      transform: scale(1.06);
+    }
+    .a11y-toggle:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+    .a11y-toggle svg { width: 32px; height: 32px; }
+
+    .a11y-panel {
+      position: fixed;
+      bottom: 100px;
+      left: 24px;
+      width: 320px;
+      max-width: calc(100vw - 48px);
+      max-height: calc(100vh - 140px);
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(26, 43, 60, 0.25);
+      z-index: 96;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(20px) scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .a11y-panel.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .a11y-header {
+      padding: 18px 20px;
+      background: var(--text);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .a11y-header h2 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin: 0;
+    }
+    .a11y-close {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .a11y-close:hover, .a11y-close:focus-visible {
+      background: rgba(255, 255, 255, 0.3);
+      outline: none;
+    }
+
+    .a11y-lang {
+      display: flex;
+      gap: 4px;
+      padding: 8px 12px;
+      background: var(--bg-sand);
+      border-bottom: 1px solid var(--border);
+    }
+    .a11y-lang button {
+      flex: 1;
+      padding: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      color: var(--text-soft);
+      transition: all 0.2s;
+    }
+    .a11y-lang button:hover { background: var(--white); color: var(--text); }
+    .a11y-lang button.active {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .a11y-lang button:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .a11y-content {
+      padding: 12px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .a11y-content button {
+      padding: 12px 8px;
+      background: var(--bg-sand-light);
+      border: 1.5px solid transparent;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      text-align: center;
+      transition: all 0.2s;
+      min-height: 78px;
+    }
+    .a11y-content button:hover {
+      background: var(--white);
+      border-color: var(--primary);
+    }
+    .a11y-content button.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+    }
+    .a11y-content button:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+    .a11y-content button .a11y-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .a11y-content .a11y-full {
+      grid-column: 1 / -1;
+    }
+    .a11y-reset {
+      background: transparent !important;
+      border: 1.5px dashed var(--border) !important;
+      color: var(--text-muted) !important;
+      flex-direction: row !important;
+      gap: 8px !important;
+    }
+    .a11y-reset:hover {
+      border-color: var(--text-soft) !important;
+      color: var(--text) !important;
+    }
+
+    .a11y-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-sand-light);
+      text-align: center;
+    }
+    .a11y-footer a {
+      font-size: 13px;
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+    .a11y-footer a:hover { color: var(--primary); }
+
+    /* RTL adjustments when Hebrew is selected */
+    .a11y-panel[dir="rtl"] {
+      left: auto;
+      right: 24px;
+    }
+    @media (max-width: 480px) {
+      .a11y-panel { left: 12px; right: 12px; bottom: 92px; width: auto; }
+      .a11y-toggle { bottom: 16px; left: 16px; width: 52px; height: 52px; }
+      .a11y-toggle svg { width: 28px; height: 28px; }
+    }
+
+    /* =====================================================
+       ACCESSIBILITY MODIFIER CLASSES (toggled on <body>)
+       ===================================================== */
+    /* Text scale */
+    body.a11y-text-115 { font-size: 18.4px; }
+    body.a11y-text-130 { font-size: 20.8px; }
+    body.a11y-text-150 { font-size: 24px; }
+
+    /* High contrast — black background, yellow text */
+    body.a11y-contrast,
+    body.a11y-contrast * {
+      background-color: #000 !important;
+      color: #FFFF00 !important;
+      border-color: #FFFF00 !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+    body.a11y-contrast a, body.a11y-contrast a * { color: #00FFFF !important; text-decoration: underline !important; }
+    body.a11y-contrast .btn, body.a11y-contrast .btn * {
+      background: #FFFF00 !important;
+      color: #000 !important;
+      border: 2px solid #FFFF00 !important;
+    }
+    body.a11y-contrast img, body.a11y-contrast video { filter: grayscale(100%) contrast(140%) !important; }
+    body.a11y-contrast .hero::before { filter: grayscale(100%) brightness(0.4) !important; }
+    body.a11y-contrast .hero::after { display: none !important; }
+    body.a11y-contrast .a11y-content button.active { background: #FFFF00 !important; color: #000 !important; }
+
+    /* Dark mode — softer than high contrast */
+    body.a11y-dark { background: #121212 !important; color: #E0E0E0 !important; }
+    body.a11y-dark .about, body.a11y-dark .gallery, body.a11y-dark .faq { background: #1a1a1a !important; }
+    body.a11y-dark .why { background: #181818 !important; }
+    body.a11y-dark .service-card, body.a11y-dark .testimonial, body.a11y-dark .why-card,
+    body.a11y-dark .form, body.a11y-dark .about-quote { background: #222 !important; border-color: #333 !important; color: #E0E0E0 !important; }
+    body.a11y-dark .form-control { background: #1a1a1a !important; color: #E0E0E0 !important; }
+    body.a11y-dark h1, body.a11y-dark h2, body.a11y-dark h3, body.a11y-dark h4 { color: #FFF !important; }
+    body.a11y-dark p, body.a11y-dark li { color: #C0C0C0 !important; }
+    body.a11y-dark .nav.scrolled { background: rgba(18, 18, 18, 0.92) !important; }
+
+    /* Grayscale */
+    body.a11y-grayscale { filter: grayscale(100%); }
+
+    /* Highlight links */
+    body.a11y-links a:not(.btn):not(.nav-logo):not(.a11y-toggle):not(.whatsapp-float) {
+      text-decoration: underline !important;
+      text-underline-offset: 3px !important;
+      text-decoration-thickness: 2px !important;
+      outline: 1px dashed currentColor;
+      outline-offset: 2px;
+    }
+
+    /* Readable font — replace decorative serifs */
+    body.a11y-readable,
+    body.a11y-readable * {
+      font-family: Arial, Verdana, sans-serif !important;
+      letter-spacing: 0.02em !important;
+      word-spacing: 0.05em !important;
+    }
+
+    /* Big cursor */
+    body.a11y-cursor,
+    body.a11y-cursor * {
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><path d='M4 4 L4 38 L13 30 L19 44 L25 41 L19 27 L31 27 Z' fill='black' stroke='white' stroke-width='2'/></svg>") 2 2, auto !important;
+    }
+    body.a11y-cursor a,
+    body.a11y-cursor button,
+    body.a11y-cursor input,
+    body.a11y-cursor select,
+    body.a11y-cursor textarea,
+    body.a11y-cursor [role="button"] {
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><circle cx='24' cy='24' r='14' fill='%231AA7B5' stroke='white' stroke-width='3'/></svg>") 24 24, pointer !important;
+    }
+
+    /* Stop animations */
+    body.a11y-no-motion,
+    body.a11y-no-motion *,
+    body.a11y-no-motion *::before,
+    body.a11y-no-motion *::after {
+      animation-duration: 0.001s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001s !important;
+      scroll-behavior: auto !important;
+    }
+    body.a11y-no-motion .reveal { opacity: 1 !important; transform: none !important; }
+    body.a11y-no-motion .whatsapp-float { animation: none !important; }
+
+    /* Improved focus visible for everyone */
+    *:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* =====================================================
        SCROLL ANIMATIONS
        ===================================================== */
     .reveal {
@@ -1108,6 +1413,9 @@
   </style>
 </head>
 <body>
+
+  <!-- =================== SKIP LINK (a11y) =================== -->
+  <a href="#main" class="skip-link" data-i18n="skip">Перейти к содержимому</a>
 
   <!-- =================== NAV =================== -->
   <header class="nav" id="nav">
@@ -1133,7 +1441,7 @@
   </header>
 
   <!-- =================== HERO =================== -->
-  <section class="hero">
+  <section class="hero" id="main">
     <div class="container">
       <span class="hero-eyebrow">Частный гид по Израилю · на русском языке</span>
       <h1>Откройте Израиль <span class="accent">вместе со мной</span></h1>
@@ -1590,10 +1898,81 @@
       </div>
       <div class="footer-bottom">
         <span>© 2026 Юля Хович · Все права защищены</span>
+        <span><a href="accessibility.html" style="color: rgba(255,255,255,0.75); text-decoration: underline;">Заявление о доступности</a></span>
         <span>Туры на русском языке по всему Израилю</span>
       </div>
     </div>
   </footer>
+
+  <!-- =================== ACCESSIBILITY WIDGET =================== -->
+  <button class="a11y-toggle" id="a11yToggle" aria-label="Меню доступности" aria-expanded="false" aria-controls="a11yPanel">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <circle cx="12" cy="3.5" r="2"/>
+      <path d="M19 7h-5l-2 7v9h-2v-9l-2-7H3v2h4l2 5v10h6V14l2-5h4z" stroke-width="0"/>
+    </svg>
+  </button>
+
+  <div class="a11y-panel" id="a11yPanel" role="dialog" aria-modal="false" aria-labelledby="a11yTitle" hidden>
+    <div class="a11y-header">
+      <h2 id="a11yTitle" data-i18n="title">Меню доступности</h2>
+      <button class="a11y-close" id="a11yClose" aria-label="Закрыть меню доступности">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="a11y-lang" role="group" aria-label="Language selection">
+      <button data-lang="ru" class="active">RU</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="he">עב</button>
+    </div>
+
+    <div class="a11y-content">
+      <button data-action="text-bigger" data-i18n-aria="text-bigger" aria-label="Увеличить текст">
+        <span class="a11y-icon" aria-hidden="true">A+</span>
+        <span data-i18n="text-bigger">Увеличить текст</span>
+      </button>
+      <button data-action="text-smaller" data-i18n-aria="text-smaller" aria-label="Уменьшить текст">
+        <span class="a11y-icon" aria-hidden="true">A−</span>
+        <span data-i18n="text-smaller">Уменьшить текст</span>
+      </button>
+      <button data-action="contrast" data-i18n-aria="contrast" aria-label="Высокий контраст">
+        <span class="a11y-icon" aria-hidden="true">◐</span>
+        <span data-i18n="contrast">Высокий контраст</span>
+      </button>
+      <button data-action="dark" data-i18n-aria="dark" aria-label="Тёмная тема">
+        <span class="a11y-icon" aria-hidden="true">🌙</span>
+        <span data-i18n="dark">Тёмная тема</span>
+      </button>
+      <button data-action="grayscale" data-i18n-aria="grayscale" aria-label="Оттенки серого">
+        <span class="a11y-icon" aria-hidden="true">◯</span>
+        <span data-i18n="grayscale">Оттенки серого</span>
+      </button>
+      <button data-action="links" data-i18n-aria="links" aria-label="Подчеркнуть ссылки">
+        <span class="a11y-icon" aria-hidden="true">🔗</span>
+        <span data-i18n="links">Подчеркнуть ссылки</span>
+      </button>
+      <button data-action="readable" data-i18n-aria="readable" aria-label="Читаемый шрифт">
+        <span class="a11y-icon" aria-hidden="true">Aa</span>
+        <span data-i18n="readable">Читаемый шрифт</span>
+      </button>
+      <button data-action="cursor" data-i18n-aria="cursor" aria-label="Большой курсор">
+        <span class="a11y-icon" aria-hidden="true">➤</span>
+        <span data-i18n="cursor">Большой курсор</span>
+      </button>
+      <button data-action="no-motion" data-i18n-aria="no-motion" aria-label="Остановить анимации" class="a11y-full">
+        <span class="a11y-icon" aria-hidden="true">⏸</span>
+        <span data-i18n="no-motion">Остановить анимации</span>
+      </button>
+      <button data-action="reset" class="a11y-full a11y-reset" aria-label="Сбросить настройки">
+        <span class="a11y-icon" aria-hidden="true">↻</span>
+        <span data-i18n="reset">Сбросить все настройки</span>
+      </button>
+    </div>
+
+    <div class="a11y-footer">
+      <a href="accessibility.html" data-i18n="statement">Заявление о доступности</a>
+    </div>
+  </div>
 
   <!-- =================== STICKY WHATSAPP =================== -->
   <a href="https://wa.me/972506887446?text=Здравствуйте%2C%20Юля!" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
@@ -1632,6 +2011,217 @@
     } else {
       reveals.forEach(el => el.classList.add('in-view'));
     }
+
+    // ============================================
+    //  ACCESSIBILITY WIDGET
+    // ============================================
+    (function() {
+      const STORAGE_KEY = 'yulia-a11y-settings';
+      const LANG_KEY = 'yulia-a11y-lang';
+
+      // Toggle classes — applied to <body>
+      const TOGGLE_CLASSES = {
+        'contrast': 'a11y-contrast',
+        'dark': 'a11y-dark',
+        'grayscale': 'a11y-grayscale',
+        'links': 'a11y-links',
+        'readable': 'a11y-readable',
+        'cursor': 'a11y-cursor',
+        'no-motion': 'a11y-no-motion'
+      };
+      const TEXT_LEVELS = ['', 'a11y-text-115', 'a11y-text-130', 'a11y-text-150'];
+
+      // Translations
+      const i18n = {
+        ru: {
+          title: 'Меню доступности',
+          'text-bigger': 'Увеличить текст',
+          'text-smaller': 'Уменьшить текст',
+          'contrast': 'Высокий контраст',
+          'dark': 'Тёмная тема',
+          'grayscale': 'Оттенки серого',
+          'links': 'Подчеркнуть ссылки',
+          'readable': 'Читаемый шрифт',
+          'cursor': 'Большой курсор',
+          'no-motion': 'Остановить анимации',
+          'reset': 'Сбросить все настройки',
+          'statement': 'Заявление о доступности',
+          'skip': 'Перейти к содержимому',
+          'close': 'Закрыть меню доступности',
+          'toggle': 'Меню доступности'
+        },
+        en: {
+          title: 'Accessibility menu',
+          'text-bigger': 'Bigger text',
+          'text-smaller': 'Smaller text',
+          'contrast': 'High contrast',
+          'dark': 'Dark mode',
+          'grayscale': 'Grayscale',
+          'links': 'Highlight links',
+          'readable': 'Readable font',
+          'cursor': 'Big cursor',
+          'no-motion': 'Stop animations',
+          'reset': 'Reset all settings',
+          'statement': 'Accessibility statement',
+          'skip': 'Skip to content',
+          'close': 'Close accessibility menu',
+          'toggle': 'Accessibility menu'
+        },
+        he: {
+          title: 'תפריט נגישות',
+          'text-bigger': 'הגדל טקסט',
+          'text-smaller': 'הקטן טקסט',
+          'contrast': 'ניגודיות גבוהה',
+          'dark': 'מצב כהה',
+          'grayscale': 'גווני אפור',
+          'links': 'הדגשת קישורים',
+          'readable': 'גופן קריא',
+          'cursor': 'סמן מוגדל',
+          'no-motion': 'עצירת אנימציות',
+          'reset': 'איפוס הגדרות',
+          'statement': 'הצהרת נגישות',
+          'skip': 'דלג לתוכן',
+          'close': 'סגור תפריט נגישות',
+          'toggle': 'תפריט נגישות'
+        }
+      };
+
+      const toggleBtn = document.getElementById('a11yToggle');
+      const panel = document.getElementById('a11yPanel');
+      const closeBtn = document.getElementById('a11yClose');
+
+      // Storage helpers (with try/catch for privacy modes that block localStorage)
+      const load = () => {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+        catch (e) { return {}; }
+      };
+      const save = (s) => {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch (e) {}
+      };
+      const loadLang = () => {
+        try { return localStorage.getItem(LANG_KEY) || 'ru'; }
+        catch (e) { return 'ru'; }
+      };
+      const saveLang = (l) => {
+        try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+      };
+
+      let state = load();
+      // Restore textLevel as integer
+      if (typeof state.textLevel !== 'number') state.textLevel = 0;
+
+      // Apply state to DOM
+      function apply() {
+        const body = document.body;
+        // Toggles
+        Object.entries(TOGGLE_CLASSES).forEach(([key, cls]) => {
+          body.classList.toggle(cls, !!state[key]);
+        });
+        // Text level
+        TEXT_LEVELS.forEach((cls, i) => {
+          if (cls) body.classList.toggle(cls, state.textLevel === i);
+        });
+        // Update button active states
+        document.querySelectorAll('.a11y-content button[data-action]').forEach(btn => {
+          const action = btn.dataset.action;
+          if (TOGGLE_CLASSES[action]) {
+            btn.classList.toggle('active', !!state[action]);
+          } else if (action === 'text-bigger' || action === 'text-smaller') {
+            btn.classList.toggle('active', state.textLevel > 0 && action === 'text-bigger' ? false : false);
+          }
+        });
+        // Sync text-bigger button highlight when not at zero
+        const tbBtn = document.querySelector('[data-action="text-bigger"]');
+        if (tbBtn) tbBtn.classList.toggle('active', state.textLevel > 0);
+        save(state);
+      }
+
+      // Action handler
+      function action(name) {
+        if (name === 'text-bigger') {
+          state.textLevel = Math.min(state.textLevel + 1, TEXT_LEVELS.length - 1);
+        } else if (name === 'text-smaller') {
+          state.textLevel = Math.max(state.textLevel - 1, 0);
+        } else if (name === 'reset') {
+          state = { textLevel: 0 };
+        } else if (TOGGLE_CLASSES[name]) {
+          state[name] = !state[name];
+          // Mutually exclusive: contrast and dark
+          if (name === 'contrast' && state.contrast) state.dark = false;
+          if (name === 'dark' && state.dark) state.contrast = false;
+        }
+        apply();
+      }
+
+      // Apply translation for current language
+      function applyLang(lang) {
+        const dict = i18n[lang] || i18n.ru;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.dataset.i18n;
+          if (dict[key]) el.textContent = dict[key];
+        });
+        document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+          const key = el.dataset.i18nAria;
+          if (dict[key]) el.setAttribute('aria-label', dict[key]);
+        });
+        // Special: aria-label of toggle button
+        if (toggleBtn) toggleBtn.setAttribute('aria-label', dict.toggle);
+        if (closeBtn) closeBtn.setAttribute('aria-label', dict.close);
+        // RTL for Hebrew
+        panel.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+        // Update lang button active state
+        document.querySelectorAll('.a11y-lang button').forEach(b => {
+          b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        saveLang(lang);
+      }
+
+      // Open / close panel
+      function openPanel() {
+        panel.hidden = false;
+        requestAnimationFrame(() => panel.classList.add('open'));
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        // Move focus to first interactive element
+        setTimeout(() => panel.querySelector('.a11y-lang button.active')?.focus(), 200);
+      }
+      function closePanel() {
+        panel.classList.remove('open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        setTimeout(() => { panel.hidden = true; toggleBtn.focus(); }, 250);
+      }
+
+      // Wire events
+      toggleBtn.addEventListener('click', () => {
+        if (panel.classList.contains('open')) closePanel(); else openPanel();
+      });
+      closeBtn.addEventListener('click', closePanel);
+
+      // ESC closes panel
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
+      });
+
+      // Click outside closes panel
+      document.addEventListener('click', (e) => {
+        if (!panel.classList.contains('open')) return;
+        if (panel.contains(e.target) || toggleBtn.contains(e.target)) return;
+        closePanel();
+      });
+
+      // Action buttons
+      document.querySelectorAll('.a11y-content button[data-action]').forEach(btn => {
+        btn.addEventListener('click', () => action(btn.dataset.action));
+      });
+
+      // Language buttons
+      document.querySelectorAll('.a11y-lang button').forEach(btn => {
+        btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+      });
+
+      // Initial state
+      apply();
+      applyLang(loadLang());
+    })();
 
     // Booking form (front-end demo — replace with real backend / Formspree / Netlify Forms)
     const form = document.getElementById('bookingForm');

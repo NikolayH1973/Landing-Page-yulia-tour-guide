@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Заявление о доступности · Юля Хович</title>
+  <meta name="description" content="Заявление о доступности сайта Юли Хович — частного гида по Израилю. Соответствие WCAG 2.0 AA и израильскому стандарту 5568." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-sand: #F5F1EA;
+      --bg-sand-light: #FBF8F3;
+      --primary: #1AA7B5;
+      --primary-dark: #0E6A75;
+      --primary-light: #E8F6F8;
+      --accent: #E8B86D;
+      --text: #1A2B3C;
+      --text-soft: #4A5A6B;
+      --text-muted: #7B8896;
+      --border: #E5E7EA;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    body[dir="rtl"] { font-family: 'Inter', -apple-system, sans-serif; }
+
+    .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    .top-bar {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      color: #FFF;
+      padding: 32px 0 24px;
+    }
+    .top-bar a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.92);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      transition: color 0.2s;
+    }
+    .top-bar a:hover { color: var(--accent); }
+    .top-bar h1 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 42px);
+      color: #FFF;
+      font-weight: 600;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-sand);
+      padding: 6px;
+      border-radius: 999px;
+      margin: 32px auto;
+      width: fit-content;
+    }
+    .lang-switch button {
+      padding: 8px 20px;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-soft);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-switch button:hover { color: var(--text); }
+    .lang-switch button.active {
+      background: var(--primary);
+      color: #FFF;
+    }
+    .lang-switch button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    main { padding: 0 0 80px; }
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
+
+    .lang-section h2 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 600;
+      margin: 40px 0 16px;
+      color: var(--text);
+    }
+    .lang-section h2:first-child { margin-top: 0; }
+    .lang-section h3 {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 600;
+      margin: 28px 0 10px;
+      color: var(--text);
+    }
+    .lang-section p { color: var(--text-soft); margin-bottom: 14px; }
+    .lang-section ul { margin: 8px 0 18px; padding-left: 24px; color: var(--text-soft); }
+    .lang-section[dir="rtl"] ul { padding-left: 0; padding-right: 24px; }
+    .lang-section li { margin-bottom: 8px; }
+
+    .info-card {
+      background: var(--bg-sand-light);
+      border-left: 3px solid var(--primary);
+      padding: 18px 22px;
+      border-radius: var(--radius-sm);
+      margin: 20px 0;
+    }
+    .lang-section[dir="rtl"] .info-card {
+      border-left: none;
+      border-right: 3px solid var(--primary);
+    }
+    .info-card strong { color: var(--text); }
+
+    .contact-block {
+      background: var(--primary-light);
+      padding: 24px;
+      border-radius: var(--radius);
+      margin: 32px 0;
+    }
+    .contact-block h3 { margin-top: 0; }
+    .contact-block a {
+      color: var(--primary-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+    .contact-block a:hover { color: var(--text); }
+
+    .meta {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .footer {
+      padding: 32px 0;
+      background: var(--text);
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 14px;
+      text-align: center;
+    }
+    .footer a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: underline;
+    }
+    .footer a:hover { color: var(--accent); }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="container">
+      <a href="index.html" id="backLink">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        <span id="backText">Вернуться на главную</span>
+      </a>
+      <h1 id="pageTitle">Заявление о доступности</h1>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="lang-switch" role="group" aria-label="Язык документа">
+      <button data-lang="ru" class="active">Русский</button>
+      <button data-lang="en">English</button>
+      <button data-lang="he">עברית</button>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+
+      <!-- ======================== РУССКИЙ ======================== -->
+      <section class="lang-section active" id="lang-ru" dir="ltr">
+        <h2>Наша приверженность доступности</h2>
+        <p>
+          Сайт <strong>Юля Хович — частный гид по Израилю</strong> стремится обеспечить
+          максимальную доступность для всех пользователей, включая людей с инвалидностью,
+          в соответствии с международным стандартом <strong>WCAG 2.0 уровень AA</strong>
+          и израильским стандартом <strong>ת"י 5568</strong>.
+        </p>
+        <p>
+          Мы верим, что путешествия и истории должны быть доступны каждому, и работаем
+          над тем, чтобы сайт был удобен для всех — независимо от используемых
+          технологий или физических возможностей.
+        </p>
+
+        <h2>Что мы сделали для доступности</h2>
+        <ul>
+          <li>Меню доступности с настройками текста, контраста, шрифта и анимаций</li>
+          <li>Полная поддержка навигации с клавиатуры (Tab, Shift+Tab, Enter, Escape)</li>
+          <li>Совместимость со скринридерами (NVDA, VoiceOver, JAWS)</li>
+          <li>Альтернативный текст для всех изображений</li>
+          <li>Логичная структура заголовков (h1 → h2 → h3)</li>
+          <li>Достаточная цветовая контрастность согласно WCAG</li>
+          <li>Возможность отключить движение и анимации</li>
+          <li>Адаптивный дизайн для мобильных устройств и планшетов</li>
+          <li>Ссылка «Перейти к содержимому» для быстрой навигации</li>
+        </ul>
+
+        <h2>Меню доступности</h2>
+        <p>
+          В левом нижнем углу каждой страницы расположена кнопка с иконкой человека —
+          это меню доступности. Через него можно:
+        </p>
+        <ul>
+          <li>Увеличить или уменьшить размер текста (4 уровня)</li>
+          <li>Включить высокий контраст (чёрный фон, жёлтый текст)</li>
+          <li>Переключиться на тёмную тему</li>
+          <li>Включить режим оттенков серого (для людей с дальтонизмом)</li>
+          <li>Подчеркнуть все ссылки</li>
+          <li>Заменить декоративный шрифт на читаемый (Arial)</li>
+          <li>Включить большой курсор</li>
+          <li>Остановить все анимации и движение</li>
+          <li>Переключить язык интерфейса меню (RU / EN / HE)</li>
+        </ul>
+        <p>Все настройки сохраняются и применяются автоматически при следующем посещении.</p>
+
+        <h2>Известные ограничения</h2>
+        <div class="info-card">
+          <p><strong>Открытость в коммуникации:</strong> Мы стремимся к полному соответствию
+          стандартам, но признаём, что доступность — это непрерывный процесс. Если вы столкнулись
+          с проблемой доступности, пожалуйста, сообщите нам — мы устраним её в кратчайшие сроки.</p>
+        </div>
+
+        <h2>Контакты по вопросам доступности</h2>
+        <div class="contact-block">
+          <h3>Юля Хович</h3>
+          <p>Если у вас возникли трудности при использовании сайта, или вы хотите сообщить
+          о проблеме с доступностью — свяжитесь со мной любым удобным способом:</p>
+          <ul>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/972506887446">+972 50-688-7446</a></li>
+            <li><strong>Email:</strong> <a href="mailto:hovich.yulia@gmail.com">hovich.yulia@gmail.com</a></li>
+          </ul>
+          <p>Я отвечу в течение 48 часов и сделаю всё возможное, чтобы помочь.</p>
+        </div>
+
+        <div class="meta">
+          <p>Дата последнего обновления: <strong>25 апреля 2026 г.</strong></p>
+          <p>Документ соответствует требованиям закона Израиля «О равных правах для людей с инвалидностью» (Постановление о приспособлениях для доступа к услугам, 2013).</p>
+        </div>
+      </section>
+
+      <!-- ======================== ENGLISH ======================== -->
+      <section class="lang-section" id="lang-en" dir="ltr">
+        <h2>Our commitment to accessibility</h2>
+        <p>
+          The website <strong>Yulia Hovich — Private Tour Guide in Israel</strong> is
+          committed to providing the highest level of accessibility for all users,
+          including people with disabilities, in accordance with international standard
+          <strong>WCAG 2.0 Level AA</strong> and Israeli standard <strong>IS 5568</strong>.
+        </p>
+        <p>
+          We believe that travel and stories should be accessible to everyone, and we
+          work to make this site usable for all visitors regardless of technology or
+          physical ability.
+        </p>
+
+        <h2>What we have done for accessibility</h2>
+        <ul>
+          <li>Accessibility menu with text, contrast, font, and animation controls</li>
+          <li>Full keyboard navigation support (Tab, Shift+Tab, Enter, Escape)</li>
+          <li>Screen reader compatibility (NVDA, VoiceOver, JAWS)</li>
+          <li>Alt text for all images</li>
+          <li>Logical heading hierarchy (h1 → h2 → h3)</li>
+          <li>Sufficient color contrast per WCAG</li>
+          <li>Option to disable motion and animations</li>
+          <li>Responsive design for mobile and tablet</li>
+          <li>"Skip to content" link for quick navigation</li>
+        </ul>
+
+        <h2>Accessibility menu</h2>
+        <p>
+          In the bottom-left corner of every page is a button with a person icon — this is
+          the accessibility menu. Through it you can:
+        </p>
+        <ul>
+          <li>Increase or decrease text size (4 levels)</li>
+          <li>Enable high contrast (black background, yellow text)</li>
+          <li>Switch to dark mode</li>
+          <li>Enable grayscale mode (for color-blind users)</li>
+          <li>Underline all links</li>
+          <li>Replace decorative font with readable Arial</li>
+          <li>Enable large cursor</li>
+          <li>Stop all animations and motion</li>
+          <li>Switch interface language (RU / EN / HE)</li>
+        </ul>
+        <p>All settings are saved and applied automatically on your next visit.</p>
+
+        <h2>Known limitations</h2>
+        <div class="info-card">
+          <p><strong>Open communication:</strong> We strive for full standards compliance,
+          but recognize that accessibility is an ongoing process. If you encounter an
+          accessibility issue, please let us know — we will address it as quickly as possible.</p>
+        </div>
+
+        <h2>Accessibility contact</h2>
+        <div class="contact-block">
+          <h3>Yulia Hovich</h3>
+          <p>If you experience difficulty using the site, or wish to report an accessibility
+          issue, please contact me via any convenient method:</p>
+          <ul>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/972506887446">+972 50-688-7446</a></li>
+            <li><strong>Email:</strong> <a href="mailto:hovich.yulia@gmail.com">hovich.yulia@gmail.com</a></li>
+          </ul>
+          <p>I will respond within 48 hours and do my best to help.</p>
+        </div>
+
+        <div class="meta">
+          <p>Last updated: <strong>April 25, 2026</strong></p>
+          <p>This document complies with the requirements of Israel's Equal Rights for Persons with Disabilities Law (Service Accessibility Adjustments Regulation, 2013).</p>
+        </div>
+      </section>
+
+      <!-- ======================== עברית ======================== -->
+      <section class="lang-section" id="lang-he" dir="rtl">
+        <h2>המחויבות שלנו לנגישות</h2>
+        <p>
+          האתר <strong>יוליה חוביץ' — מורת דרך פרטית בישראל</strong> מחויב לספק
+          את רמת הנגישות הגבוהה ביותר לכל המשתמשים, כולל אנשים עם מוגבלות, בהתאם
+          לתקן הבינלאומי <strong>WCAG 2.0 ברמה AA</strong> ולתקן הישראלי <strong>ת"י 5568</strong>.
+        </p>
+        <p>
+          אנו מאמינים שטיולים וסיפורים צריכים להיות נגישים לכל אחד, ועובדים כדי שהאתר
+          יהיה נוח לשימוש עבור כולם — ללא תלות בטכנולוגיה או ביכולת פיזית.
+        </p>
+
+        <h2>מה עשינו למען הנגישות</h2>
+        <ul>
+          <li>תפריט נגישות עם בקרות לטקסט, ניגודיות, גופן ואנימציות</li>
+          <li>תמיכה מלאה בניווט מקלדת (Tab, Shift+Tab, Enter, Escape)</li>
+          <li>תאימות לקוראי מסך (NVDA, VoiceOver, JAWS)</li>
+          <li>טקסט חלופי לכל התמונות</li>
+          <li>היררכיית כותרות לוגית (h1 ← h2 ← h3)</li>
+          <li>ניגודיות צבעים מספקת בהתאם ל-WCAG</li>
+          <li>אפשרות לעצור תנועה ואנימציות</li>
+          <li>עיצוב מותאם לנייד וטאבלט</li>
+          <li>קישור "דלג לתוכן" לניווט מהיר</li>
+        </ul>
+
+        <h2>תפריט הנגישות</h2>
+        <p>
+          בפינה השמאלית התחתונה של כל עמוד נמצא כפתור עם סמל של אדם — זהו תפריט הנגישות.
+          דרכו ניתן:
+        </p>
+        <ul>
+          <li>להגדיל או להקטין את גודל הטקסט (4 רמות)</li>
+          <li>להפעיל ניגודיות גבוהה (רקע שחור, טקסט צהוב)</li>
+          <li>לעבור למצב כהה</li>
+          <li>להפעיל מצב גווני אפור (למשתמשים עם עיוורון צבעים)</li>
+          <li>להדגיש את כל הקישורים</li>
+          <li>להחליף את הגופן הדקורטיבי בגופן קריא (Arial)</li>
+          <li>להפעיל סמן מוגדל</li>
+          <li>לעצור את כל האנימציות והתנועה</li>
+          <li>להחליף את שפת הממשק (רוסית / אנגלית / עברית)</li>
+        </ul>
+        <p>כל ההגדרות נשמרות ומיושמות אוטומטית בביקור הבא.</p>
+
+        <h2>מגבלות ידועות</h2>
+        <div class="info-card">
+          <p><strong>פתיחות בתקשורת:</strong> אנו שואפים לעמידה מלאה בתקנים, אך מכירים בכך
+          שנגישות היא תהליך מתמשך. אם נתקלתם בבעיית נגישות, אנא הודיעו לנו — נטפל בה בהקדם האפשרי.</p>
+        </div>
+
+        <h2>איש קשר לנושאי נגישות</h2>
+        <div class="contact-block">
+          <h3>יוליה חוביץ'</h3>
+          <p>אם נתקלתם בקושי בשימוש באתר, או ברצונכם לדווח על בעיית נגישות — אנא צרו איתי
+          קשר בכל אחת מהדרכים הנוחות:</p>
+          <ul>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/972506887446">+972 50-688-7446</a></li>
+            <li><strong>אימייל:</strong> <a href="mailto:hovich.yulia@gmail.com">hovich.yulia@gmail.com</a></li>
+          </ul>
+          <p>אענה בתוך 48 שעות ואעשה כמיטב יכולתי לעזור.</p>
+        </div>
+
+        <div class="meta">
+          <p>תאריך עדכון אחרון: <strong>25 באפריל 2026</strong></p>
+          <p>מסמך זה עומד בדרישות חוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח-1998 (תקנות שוויון זכויות לאנשים עם מוגבלות — התאמות נגישות לשירות, התשע"ג-2013).</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Юля Хович · <a href="index.html">На главную</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Language switching
+    const translations = {
+      ru: { title: 'Заявление о доступности', back: 'Вернуться на главную', htmlLang: 'ru', dir: 'ltr' },
+      en: { title: 'Accessibility Statement', back: 'Back to home', htmlLang: 'en', dir: 'ltr' },
+      he: { title: 'הצהרת נגישות', back: 'חזרה לעמוד הראשי', htmlLang: 'he', dir: 'rtl' }
+    };
+
+    function switchLang(lang) {
+      const t = translations[lang] || translations.ru;
+      document.documentElement.lang = t.htmlLang;
+      document.documentElement.dir = t.dir;
+      document.body.dir = t.dir;
+      document.getElementById('pageTitle').textContent = t.title;
+      document.getElementById('backText').textContent = t.back;
+      document.title = t.title + ' · Юля Хович';
+
+      document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+      document.getElementById('lang-' + lang).classList.add('active');
+      document.querySelectorAll('.lang-switch button').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+
+      try { localStorage.setItem('yulia-a11y-lang', lang); } catch(e) {}
+    }
+
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.addEventListener('click', () => switchLang(btn.dataset.lang));
+    });
+
+    // Apply saved language on load
+    try {
+      const saved = localStorage.getItem('yulia-a11y-lang');
+      if (saved && translations[saved]) switchLang(saved);
+    } catch(e) {}
+  </script>
+</body>
+</html>
