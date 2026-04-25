@@ -990,6 +990,58 @@
       flex-wrap: wrap;
     }
 
+    /* QR code card (Save contact via mobile scan) */
+    .cta-qr {
+      margin: 48px auto 0;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 22px 24px 20px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 22px;
+      max-width: 320px;
+    }
+    .cta-qr-image {
+      width: 168px;
+      height: 168px;
+      background: #fff;
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cta-qr-image svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .cta-qr-image .qr-skeleton {
+      width: 100%; height: 100%;
+      background: linear-gradient(110deg, #f0f0f0 8%, #fafafa 18%, #f0f0f0 33%);
+      background-size: 200% 100%;
+      border-radius: 6px;
+      animation: qrShimmer 1.4s linear infinite;
+    }
+    @keyframes qrShimmer { to { background-position: -200% 0; } }
+    .cta-qr-caption {
+      font-size: 14.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.92);
+      text-align: center;
+      margin: 0;
+      max-width: 240px;
+    }
+    .cta-qr-caption strong { color: #fff; font-weight: 600; }
+    @media (prefers-reduced-motion: reduce) {
+      .cta-qr-image .qr-skeleton { animation: none; }
+    }
+
     /* =====================================================
        FOOTER
        ===================================================== */
@@ -1867,6 +1919,17 @@
           Сохранить контакт
         </a>
       </div>
+
+      <!-- QR-код, ведущий на /contact (для встреч офлайн / показа экрана) -->
+      <div class="cta-qr" id="ctaQr">
+        <div class="cta-qr-image" id="ctaQrImage" aria-label="QR-код для сохранения контакта Юли">
+          <div class="qr-skeleton" aria-hidden="true"></div>
+        </div>
+        <p class="cta-qr-caption">
+          <strong>Сканируйте телефоном</strong><br>
+          и сохраните контакт в одно касание
+        </p>
+      </div>
     </div>
   </section>
 
@@ -1993,6 +2056,56 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // QR code → /contact (lazy-loaded когда секция в зоне видимости)
+    (function initContactQr() {
+      const target = document.getElementById('ctaQrImage');
+      if (!target) return;
+
+      const renderQr = () => {
+        // QR работает только когда сайт задеплоен (http/https). При локальном открытии (file://) — заглушка.
+        if (!location.protocol.startsWith('http')) {
+          target.innerHTML = '<div style="font-size:12px;color:#888;padding:14px 8px;text-align:center;line-height:1.45">QR появится<br>после публикации сайта</div>';
+          return;
+        }
+        const url = location.origin + '/contact.html';
+        const draw = () => {
+          if (typeof qrcode !== 'function') return;
+          const qr = qrcode(0, 'M');
+          qr.addData(url);
+          qr.make();
+          // 4px per cell, 0 margin (white padding handled by container)
+          target.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+          const svg = target.querySelector('svg');
+          if (svg) {
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.removeAttribute('style');
+          }
+        };
+        if (typeof qrcode === 'function') {
+          draw();
+        } else {
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js';
+          s.async = true;
+          s.onload = draw;
+          s.onerror = () => { target.innerHTML = '<div style="font-size:12px;color:#999;padding:8px;text-align:center">QR недоступен</div>'; };
+          document.head.appendChild(s);
+        }
+      };
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { renderQr(); io.disconnect(); }
+          });
+        }, { rootMargin: '200px' });
+        io.observe(target);
+      } else {
+        renderQr();
+      }
+    })();
 
     // Mobile menu
     const toggle = document.querySelector('.nav-toggle');
