@@ -37,11 +37,13 @@ yulia-tour-guide/
 
 ### Изменить контактные данные
 
-| Что | Найти в файле | Сколько мест |
-|---|---|---|
-| Номер WhatsApp | `972506887446` | 4 |
-| Email | `hovich.yulia@gmail.com` | 2 |
-| Instagram | `gid.israel.yulia` | 2 |
+⚠️ **Контакты есть в трёх файлах** — `index.html`, `contact.html` и `yulia-hovich.vcf`. При смене обновите все три (Find & Replace в любом редакторе).
+
+| Что | Найти |
+|---|---|
+| Номер WhatsApp | `972506887446` |
+| Email | `hovich.yulia@gmail.com` |
+| Instagram | `gid.israel.yulia` |
 
 ### Заменить фото Юли
 
