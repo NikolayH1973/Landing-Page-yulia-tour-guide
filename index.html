@@ -15,22 +15,124 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Юлия Хович — частный гид по Израилю",
-    "description": "Индивидуальные экскурсии по Израилю на русском языке: Иерусалим, Тель-Авив, Хайфа, винные туры и авторские маршруты.",
-    "url": "https://hovichyulia.netlify.app/",
-    "telephone": "+972506887446",
-    "email": "hovich.yulia@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Tel Aviv",
-      "addressCountry": "IL"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "TouristInformationCenter"],
+      "name": "Юлия Хович — частный гид по Израилю",
+      "description": "Индивидуальные экскурсии по Израилю на русском языке: Иерусалим, Тель-Авив, Хайфа, винные туры и авторские маршруты.",
+      "url": "https://hovichyulia.netlify.app/",
+      "telephone": "+972506887446",
+      "email": "hovich.yulia@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tel Aviv",
+        "addressCountry": "IL"
+      },
+      "areaServed": { "@type": "Country", "name": "Israel" },
+      "availableLanguage": ["Russian", "Hebrew"],
+      "priceRange": "₪₪",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "6",
+        "bestRating": "5",
+        "worstRating": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Анна и Дмитрий" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "name": "Нам очень понравилось — и это точно не последняя прогулка",
+          "reviewBody": "Спасибо огромное за экскурсию! Очень интересно рассказывали и показывали. Наша первая серьёзная прогулка по Иерусалиму — обязательно вернёмся и будем рекомендовать друзьям."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Анна Колпакова" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "name": "Такого уровня индивидуального подхода я не встречала",
+          "reviewBody": "Давно ценю индивидуальные экскурсии, но здесь был совершенно другой уровень. Благодаря Юле случилась настоящая любовь к Израилю."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Игорь Левин" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "name": "Когда человек любит своё дело — это чувствуется",
+          "reviewBody": "Лёгкость, юмор и при этом глубина — когда человек любит то, чем занимается, это очень чувствуется."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Семья Левиных" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "name": "Лучший гид и уже почти наш друг",
+          "reviewBody": "Иерусалим — город, который можно открывать бесконечно. Спасибо Юле Хович — рядом не просто гид, а человек, с которым хочется гулять дальше."
+        }
+      ]
     },
-    "areaServed": "Israel",
-    "availableLanguage": ["Russian", "Hebrew"]
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Юлия Хович",
+      "jobTitle": "Частный лицензированный гид по Израилю",
+      "description": "Лицензированный гид Министерства туризма Израиля. Индивидуальные экскурсии на русском языке: Иерусалим, Тель-Авив, Хайфа, винные туры.",
+      "url": "https://hovichyulia.netlify.app/",
+      "telephone": "+972506887446",
+      "email": "hovich.yulia@gmail.com",
+      "knowsLanguage": ["Russian", "Hebrew"],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Tour Guide",
+        "occupationLocation": { "@type": "Country", "name": "Israel" }
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Что входит в экскурсию по Израилю с частным гидом?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Авторский маршрут под вас, живые рассказы об истории и культуре, рекомендации по ресторанам и локальным точкам. Транспорт и входные билеты — отдельно. Всё остальное берёт на себя гид: подготовку, тайминг, воду в дорогу."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли заказать экскурсию в Иерусалим с русскоязычным гидом?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, Иерусалим — один из самых популярных маршрутов Юлии Хович. Экскурсии по Старому городу, горе Сион, Масличной горе и другим ключевым местам — на русском языке."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какие города Израиля можно посетить с гидом?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Юлия работает по всему Израилю: Иерусалим, Тель-Авив, Яффо, Хайфа, Кейсария, Акко, Нетания, Мёртвое море, Масада, Галилея, Голанские высоты."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит индивидуальная экскурсия по Израилю?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Базовый дневной тур (без транспорта и входных билетов) — от 1000 ₪. Точная стоимость зависит от маршрута, длительности и размера группы."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Есть ли винные туры по Израилю на русском языке?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, винный тур по Иудейским горам — один из авторских маршрутов. Включает посещение виноделен, монастырей и живописных пейзажей предгорья."
+          }
+        }
+      ]
+    }
+  ]
   </script>
 
   <!-- Fonts -->
