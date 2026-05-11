@@ -1133,6 +1133,21 @@ when <!DOCTYPE html>
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(26, 167, 181, 0.12);
     }
+    .form-control.error {
+      border-color: #e53e3e;
+      background: #fff5f5;
+    }
+    .form-control.error:focus {
+      border-color: #e53e3e;
+      box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.12);
+    }
+    .form-error {
+      display: none;
+      margin-top: 5px;
+      font-size: 13px;
+      color: #e53e3e;
+    }
+    .form-error.show { display: block; }
     textarea.form-control {
       min-height: 110px;
       resize: vertical;
@@ -2163,15 +2178,18 @@ when <!DOCTYPE html>
               <div class="form-group">
                 <label>Имя <span class="req">*</span></label>
                 <input class="form-control" type="text" name="name" required placeholder="Как к вам обращаться?" />
+                <span class="form-error" id="err-name">Пожалуйста, введите ваше имя</span>
               </div>
               <div class="form-group">
                 <label>WhatsApp / Телефон <span class="req">*</span></label>
                 <input class="form-control" type="tel" name="phone" required placeholder="+972 ..." />
+                <span class="form-error" id="err-phone">Введите номер телефона (только цифры)</span>
               </div>
             </div>
             <div class="form-group">
-              <label>Email</label>
-              <input class="form-control" type="email" name="email" placeholder="your@email.com" />
+              <label>Email <span class="req">*</span></label>
+              <input class="form-control" type="email" name="email" required placeholder="your@email.com" />
+              <span class="form-error" id="err-email">Введите корректный адрес электронной почты</span>
             </div>
             <div class="form-row">
               <div class="form-group">
@@ -2184,8 +2202,8 @@ when <!DOCTYPE html>
               </div>
             </div>
             <div class="form-group">
-              <label>Какой тур интересует?</label>
-              <select class="form-control" name="tour">
+              <label>Какой тур интересует? <span class="req">*</span></label>
+              <select class="form-control" name="tour" required>
                 <option value="">Выберите направление</option>
                 <option>Иерусалим</option>
                 <option>Тель-Авив и побережье</option>
@@ -2195,6 +2213,7 @@ when <!DOCTYPE html>
                 <option>Индивидуальный маршрут</option>
                 <option>Ещё не решили — посоветуйте</option>
               </select>
+              <span class="form-error" id="err-tour">Пожалуйста, выберите направление тура</span>
             </div>
             <div class="form-group">
               <label>Расскажите коротко о ваших пожеланиях</label>
@@ -2665,15 +2684,40 @@ when <!DOCTYPE html>
 
     // Booking form → Netlify Forms
     const form = document.getElementById('bookingForm');
+
+    function setError(fieldName, show) {
+      const el = form.elements[fieldName];
+      const err = document.getElementById('err-' + fieldName);
+      el.classList.toggle('error', show);
+      err.classList.toggle('show', show);
+    }
+
+    function validateForm() {
+      const name  = form.elements['name'].value.trim();
+      const phone = form.elements['phone'].value.trim();
+      const email = form.elements['email'].value.trim();
+      const tour  = form.elements['tour'].value;
+
+      const phoneValid = /^[+\d][\d\s\-()+]{6,}$/.test(phone);
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      setError('name',  !name);
+      setError('phone', !phone || !phoneValid);
+      setError('email', !email || !emailValid);
+      setError('tour',  !tour);
+
+      return name && phoneValid && emailValid && tour;
+    }
+
+    ['name', 'phone', 'email'].forEach(f => {
+      form.elements[f]?.addEventListener('input', () => setError(f, false));
+    });
+    form.elements['tour']?.addEventListener('change', () => setError('tour', false));
+
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = form.elements['name'].value.trim();
-      const phone = form.elements['phone'].value.trim();
-      if (!name || !phone) {
-        if (!name) form.elements['name'].focus();
-        else form.elements['phone'].focus();
-        return;
-      }
+      if (!validateForm()) return;
+
       const btn = form.querySelector('[type="submit"]');
       btn.disabled = true;
       try {
