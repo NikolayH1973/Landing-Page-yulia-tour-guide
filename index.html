@@ -2156,7 +2156,8 @@
           </ul>
         </div>
 
-        <form class="form reveal" id="bookingForm" novalidate>
+        <form class="form reveal" id="bookingForm" name="booking" netlify novalidate>
+          <input type="hidden" name="form-name" value="booking" />
           <div class="form-fields">
             <div class="form-row">
               <div class="form-group">
@@ -2662,9 +2663,9 @@
       applyLang(loadLang());
     })();
 
-    // Booking form (front-end demo — replace with real backend / Formspree / Netlify Forms)
+    // Booking form → Netlify Forms
     const form = document.getElementById('bookingForm');
-    form?.addEventListener('submit', (e) => {
+    form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = form.elements['name'].value.trim();
       const phone = form.elements['phone'].value.trim();
@@ -2673,11 +2674,23 @@
         else form.elements['phone'].focus();
         return;
       }
-      // TODO: отправка на сервер / Formspree / Netlify
-      // Пример: fetch('/api/booking', { method:'POST', body: new FormData(form) })
-      form.classList.add('submitted');
-      document.getElementById('formSuccess').classList.add('show');
-      document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const btn = form.querySelector('[type="submit"]');
+      btn.disabled = true;
+      try {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+        if (!res.ok) throw new Error(res.status);
+        form.classList.add('submitted');
+        const success = document.getElementById('formSuccess');
+        success.classList.add('show');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch {
+        btn.disabled = false;
+        alert('Не удалось отправить заявку. Пожалуйста, напишите напрямую в WhatsApp.');
+      }
     });
   </script>
 </body>
