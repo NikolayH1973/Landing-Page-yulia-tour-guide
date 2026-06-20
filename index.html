@@ -426,6 +426,13 @@ when <!DOCTYPE html>
       color: var(--white);
       overflow: hidden;
     }
+    @media (max-width: 768px) {
+      .hero {
+        min-height: auto;
+        padding: 100px 0 60px;
+        align-items: flex-start;
+      }
+    }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
