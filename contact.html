@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Юля Хович — Гид по Израилю</title>
+<meta name="description" content="Частный гид по Израилю на русском языке. Сохраните контакт в одно касание.">
+<meta name="theme-color" content="#1AA7B5">
+<meta name="robots" content="noindex">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Юля Хович — Гид по Израилю">
+<meta property="og:description" content="Сохранить контакт в одно касание.">
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="ru_RU">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>">
+
+<!-- Preload key resources for instant NFC tap experience -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="images/yulia.jpeg" as="image">
+<link rel="preload" href="yulia-hovich.vcf" as="fetch" crossorigin>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #1AA7B5;
+    --primary-dark: #138a96;
+    --whatsapp: #25D366;
+    --whatsapp-dark: #1ebe5a;
+    --text: #1a2332;
+    --text-soft: #6b7280;
+    --bg-1: #fbfaf6;
+    --bg-2: #f4ede0;
+    --card: #ffffff;
+    --shadow-card: 0 20px 60px rgba(26, 35, 50, .08), 0 4px 16px rgba(26, 35, 50, .04);
+    --shadow-btn: 0 8px 24px rgba(26, 167, 181, .32);
+    --shadow-wa: 0 8px 24px rgba(37, 211, 102, .25);
+    --radius: 28px;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    color: var(--text);
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: max(20px, env(safe-area-inset-top)) 20px max(20px, env(safe-area-inset-bottom));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    padding: 44px 28px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    animation: fadeUp .5s ease-out both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin: 0 auto 22px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary), #58cdd9);
+    box-shadow:
+      0 0 0 5px #fff,
+      0 0 0 7px rgba(26, 167, 181, .15),
+      0 14px 32px rgba(26, 167, 181, .25);
+    position: relative;
+  }
+
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: var(--text-soft);
+    margin-bottom: 36px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 19px 22px;
+    border-radius: 18px;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform .12s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    will-change: transform;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: var(--shadow-btn);
+    margin-bottom: 12px;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-primary:active { transform: scale(.97); }
+
+  .btn-whatsapp {
+    background: var(--whatsapp);
+    color: #fff;
+    box-shadow: var(--shadow-wa);
+  }
+  .btn-whatsapp:hover { background: var(--whatsapp-dark); }
+  .btn-whatsapp:active { transform: scale(.97); }
+
+  .website-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 28px;
+    padding: 6px 12px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-soft);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: color .2s, background .2s;
+  }
+  .website-link:hover { color: var(--primary); background: rgba(26, 167, 181, .06); }
+
+  @media (max-width: 380px) {
+    .card { padding: 36px 22px 26px; border-radius: 24px; }
+    h1 { font-size: 30px; }
+    .avatar { width: 112px; height: 112px; }
+    .btn { padding: 17px 20px; font-size: 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; }
+    .btn { transition: none; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-1: #15202b;
+      --bg-2: #1c2b3a;
+      --card: #ffffff;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="card" role="main">
+    <div class="avatar">
+      <img src="images/yulia.jpeg" alt="Юля Хович" width="128" height="128" fetchpriority="high">
+    </div>
+
+    <h1>Юля Хович</h1>
+    <p class="subtitle">Гид по Израилю</p>
+
+    <a href="yulia-hovich.vcf"
+       download="Yulia-Hovich.vcf"
+       type="text/vcard"
+       class="btn btn-primary"
+       aria-label="Сохранить контакт Юли Хович в телефонную книгу">
+      📲 Сохранить контакт
+    </a>
+
+    <a href="https://wa.me/972506887446?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%AE%D0%BB%D1%8F%21"
+       class="btn btn-whatsapp"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Открыть чат в WhatsApp с Юлей">
+      💬 Написать в WhatsApp
+    </a>
+
+    <a href="/" class="website-link">Открыть сайт →</a>
+  </main>
+</body>
+</html>
