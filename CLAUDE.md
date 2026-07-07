@@ -62,3 +62,7 @@ Mobile breakpoint: `768px`
 ## Deployment
 
 Drag-and-drop the project folder to [app.netlify.com/drop](https://app.netlify.com/drop) — no config needed.
+
+## Известные ограничения инструментов
+
+- `.claude/skills/copywriting/scripts/headline_scorer.py` — числовая оценка НЕ работает для русского текста (word-lists только на английском: power_words, emotional_triggers, jargon). Использовать только качественную методологию из SKILL.md (5-10 кандидатов + обоснование), игнорировать числовой score для русскоязычного контента.
